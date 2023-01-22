@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.dao.PublicacaoDao;
+import com.example.demo.dao.UsuarioDao;
 import com.example.demo.model.Publicacao;
 import com.example.demo.model.Usuario;
 
@@ -24,6 +26,9 @@ public class PublicacaoController {
 
 	@Autowired(required = true)
 	private PublicacaoDao publicacaoDao;
+	
+	@Autowired
+	private UsuarioDao usuarioDao;
 	
 	private Date getDataHora() throws ParseException {
 		var sd = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -42,12 +47,21 @@ public class PublicacaoController {
 		return "redirect:/paginaPrincipal";
 	}
 	
-	@PostMapping("/salvarEdicaoPublicacao")
-	public String salvarEdicaoPublicacao(@ModelAttribute Publicacao publicacao,HttpSession session,Model model) throws ParseException {
+	@PostMapping("/pesquisarPorUsuario")
+	public String pesquisarPublicacaoPorUsuario(String nomeUsuario, Model model,HttpSession session) {
 		Usuario usuario =(Usuario)session.getAttribute("usuarioLogado");
-		publicacao.setDataPublicacao(this.getDataHora());
-		this.publicacaoDao.save(publicacao);
-		return "redirect:/paginaPrincipal";
+		if (model.getAttribute("publi") == null) {
+			model.addAttribute("publi", new Publicacao());
+		}
+		model.addAttribute("usuario", usuario);
+		if(nomeUsuario == null || nomeUsuario.isEmpty()) {
+			model.addAttribute("lista", publicacaoDao.findAll());
+		}else {
+			Usuario user = usuarioDao.findByNomeUsuarioEqualsIgnoreCase(nomeUsuario);
+			List<Publicacao> resultado = this.publicacaoDao.findByUser(user);
+			model.addAttribute("lista", resultado);
+		}
+		return "principal";
 	}
 	
 	@GetMapping("/listarTodasPublicacoes")

@@ -12,26 +12,36 @@
 </head>
 <body>
 	<header>
-        <nav>
+        <nav class="navbar">
             <a href="#" class="logo">Valhalla</a>
-            <div class="nav-search">
-                <input type="search" placeholder="Buscar" class="search-bar">
-            </div>
+            
+            <form action="/pesquisarPorUsuario" method="post">
+				<div class="form-inline">
+					<input type="text" class="form-control" id="nomeUsuario"
+						placeholder="Pesquise pelo nome do usuario" name="nomeUsuario" size="50" autofocus >
+					<button type="submit" class="btn btn-primary">
+						<i class="fa fa-search" style="font-size: 20px">Pesquisar</i>
+					</button>
+				</div>
+			</form>
+			
             <div class="mobile-menu">
                 <div class="line1"></div>
                 <div class="line2"></div>
                 <div class="line3"></div>
             </div>
             <ul class="nav-list">
-                <li><a href="#">Amigos</a></li>
+                <!-- <li><a href="#">Amigos</a></li>
                 <li><a href="#">Chats</a></li>
                 <li><a href="#">Hastags</a></li>
-                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Sobre</a></li> -->
                 <li><a href="/logout">Sair</a></li>
             </ul>
         </nav>
     </header>
     <main>
+    	<h2>Bem Vindo(a)</h2>
+		<h2 th:text="${usuario.nomeUsuario}"></h2>
 		<form th:action="@{/salvarPublicacao}" method="post" th:object="${publi}">
    			<div class="textfield">
 				<label th:for="texto"></label>
@@ -50,7 +60,7 @@
 				<th>Ações</th>
 			  </tr>
 			  <tr th:each="publi : ${lista}">
-			  	<td th:text="${publi.user.nome}"></td>
+			  	<td th:text="${publi.user.nomeUsuario}"></td>
 		  		<td th:text="${publi.dataPublicacao}"></td>
 				<td th:text="${publi.texto}"></td>
 				<td th:text="${publi.curtida}"></td>

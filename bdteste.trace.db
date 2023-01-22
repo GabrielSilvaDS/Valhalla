@@ -605,3 +605,10 @@ org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT *
 SELECT * FROM USUARIO 
 SELECT * FROM PUBLICACAO 
 SELECT * FROM USUARIO_PUBLICACAO [42000-214]
+2023-01-22 19:02:49 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * [*]FROMPUBLICACAO"; SQL statement:
+SELECT * FROMPUBLICACAO [42000-214]
+2023-01-22 19:03:03 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM PUBLICACAO \000d\000a[*]SELECT * FROM USUARIO"; SQL statement:
+SELECT * FROM PUBLICACAO 
+SELECT * FROM USUARIO [42000-214]

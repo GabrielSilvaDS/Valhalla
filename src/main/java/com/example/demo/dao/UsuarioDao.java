@@ -8,6 +8,10 @@ import com.example.demo.model.Usuario;
 public interface UsuarioDao extends JpaRepository<Usuario, Integer>{
 	@Query("Select u from Usuario u where u.senha = :senha and u.email = :email")
 	Usuario findBySenhaAndEmail(String senha, String email);
+
+	Usuario findByNomeUsuarioContainingIgnoreCase(String nomeUsuario);
+
+	Usuario findByNomeUsuarioEqualsIgnoreCase(String nomeUsuario);
 	
 	
 }
