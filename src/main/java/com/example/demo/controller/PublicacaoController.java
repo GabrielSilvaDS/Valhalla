@@ -48,20 +48,28 @@ public class PublicacaoController {
 	}
 	
 	@PostMapping("/pesquisarPorUsuario")
-	public String pesquisarPublicacaoPorUsuario(String nomeUsuario, Model model,HttpSession session) {
+	public String pesquisarPublicacaoPorUsuario(String parametro, Model model,HttpSession session) {
 		Usuario usuario =(Usuario)session.getAttribute("usuarioLogado");
+		model.addAttribute("usuario", usuario);
 		if (model.getAttribute("publi") == null) {
 			model.addAttribute("publi", new Publicacao());
 		}
-		model.addAttribute("usuario", usuario);
-		if(nomeUsuario == null || nomeUsuario.isEmpty()) {
-			model.addAttribute("lista", publicacaoDao.findAll());
+		if(parametro == null || parametro.isEmpty()) {
+			model.addAttribute("listaUsuario", publicacaoDao.findAll());
+			model.addAttribute("listaPublicacao", publicacaoDao.findAll());
 		}else {
-			Usuario user = usuarioDao.findByNomeUsuarioEqualsIgnoreCase(nomeUsuario);
+			//Buscar por Usuario
+			Usuario user = usuarioDao.findByNomeUsuarioEqualsIgnoreCase(parametro);
 			List<Publicacao> resultado = this.publicacaoDao.findByUser(user);
-			model.addAttribute("lista", resultado);
+			model.addAttribute("listaUsuario", resultado);
+			//Fim Buscar por Usuario
+			//Buscar por Publicação
+			List<Publicacao> resultado2 = this.publicacaoDao.findByTextoContainingIgnoreCase(parametro);
+			model.addAttribute("listaPublicacao", resultado2);
+			//Fim Buscar por Publicação
 		}
-		return "principal";
+		
+		return "resultadoPesquisa";
 	}
 	
 	@GetMapping("/listarTodasPublicacoes")

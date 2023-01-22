@@ -10,5 +10,7 @@ import com.example.demo.model.Usuario;
 public interface PublicacaoDao extends JpaRepository<Publicacao, Integer>{
 
 	List<Publicacao> findByUser(Usuario user);
+	
+	List<Publicacao> findByTextoContainingIgnoreCase(String nomeUsuario);
 
 }
