@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Principal</title>
+<link rel="stylesheet" type="text/css" href="/css/principal.css">
+</head>
+<body>
+	<header>
+        <nav>
+            <a href="#" class="logo">Valhalla</a>
+            <div class="nav-search">
+                <input type="search" placeholder="Buscar" class="search-bar">
+            </div>
+            <div class="mobile-menu">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <ul class="nav-list">
+                <li><a href="#">Amigos</a></li>
+                <li><a href="#">Chats</a></li>
+                <li><a href="#">Hastags</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="/logout">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+		<form th:action="@{/salvarPublicacao}" method="post" th:object="${publi}">
+   			<div class="textfield">
+				<label th:for="texto"></label>
+	           	<input type="text" th:field="*{texto}" class="pub-text" placeholder="Faça uma publicação..." required="required">
+	           	<button type="submit" class="btn-pub">PUBLICAR</button>
+            </div>
+        </form>
+        <div class="pub-usuarios">
+            <h1>Publicações</h1>
+            <table class="table">
+			  <tr>
+			  	<th>Usuario</th>
+			  	<th>Data de Postagem</th>
+				<th>Mensagem</th>
+				<th>Curtidas</th>
+			  </tr>
+			  <tr th:each="publi : ${lista}">
+			  	<td th:text="${publi.user.nome}"></td>
+		  		<td th:text="${publi.dataPublicacao}"></td>
+				<td th:text="${publi.texto}"></td>
+				<td th:text="${publi.curtida}"></td>
+				<td>
+			     	<a th:href="@{/editarPublicacao(id=${publi.id})}">Editar</a>
+				 	<a th:href="@{/removerPublicacao(id=${publi.id})}">Remover</a>
+			 	</td>
+		  	</tr>
+			</table>
+        </div>
+    </main>
+    <script type="text/javascript" src="/js/mobile-navbar.js"></script>
+</body>
+</html>

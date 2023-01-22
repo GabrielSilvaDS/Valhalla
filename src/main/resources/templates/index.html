@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<link rel="stylesheet" type="text/css" href="/css/index.css">
+</head>
+<body>
+	<div class="main-login">
+		<div class="left-login">
+			<h1>Faça login<br>E entre na mais nova rede social</h1>
+            <img src="/svg/login-animation.svg" class="left-login-image" alt="Acessando Rede">
+		</div>
+		<div class="right-login">
+		<form method="post" action="efetuarLogin" id="btn-form">
+			<div class="card-login">
+				
+                <h1>LOGIN</h1>
+                <span th:text="${mensagem}"></span>
+				<div class="textfield">
+					<label for="email">Email</label>
+					<input type="email" name="email" placeholder="Email">
+				</div>
+				<div class="textfield">
+					<label for="senha">Senha</label>
+					<input type="password" name="senha" placeholder="Senha">
+				</div>
+                <div class="nav-login-singup">
+						<a href="/cadastrarUsuario"><button type="button" class="btn-singup">cadastrar</button></a>					
+                    	<a href="/esqueciSenha"><button type="button" class="btn-singup">esqueci a senha</button></a>                			
+                </div>
+					<input type="submit" class="btn-login" value="Login">
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

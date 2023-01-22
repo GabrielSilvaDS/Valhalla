@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro</title>
+<link rel="stylesheet" type="text/css" href="/css/cadastro.css">
+</head>
+<body>
+	<div class="main-singup">
+        <div class="left-singup">
+            <h1>Faça seu cadastro<br>E faça parte da nossa comunidade</h1>
+            <img src="/svg/register-animate.svg" class="left-singup-image" alt="cadastrando">
+        </div>
+        <form id="nav-register" action="efetuarCadastro">
+            <div class="right-singup">
+                <div class="card-singup">
+                    <h1>CADASTRAR</h1>
+                    <div class="textfield">
+                        <label for="nomeUsuario">Usuário</label>
+                        <input type="text" name="nomeUsuario" placeholder="Usuário" required="required">
+                    </div>
+                    <div class="textfield">
+                        <label for="nome">Nome completo</label>
+                        <input type="text" name="nome" placeholder="Nome" required="required">
+                    </div>
+                    <div class="textfield">
+                        <label for="dataNascimento">Data de nascimento</label>
+                        <input type="date" name="dataNascimento">
+                    </div>
+                    <div class="textfield">
+                        <label for="email">Email válido</label>
+                        <input type="email" name="email" placeholder="Email" required="required">
+                    </div>
+                    <div class="textfield">
+                        <label for="senha">Senha</label>
+                        <input type="password" name="senha" placeholder="Senha" required="required">
+                    </div>
+                    <div class="textfield">
+                        <label for="senha">Confirmar senha</label>
+                        <input type="password" name="senha2" placeholder="Confirme a sua senha" required="required">
+                    </div>
+                    <input type="submit" id="register" class="btn-singup" value="Registrar">
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
