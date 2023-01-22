@@ -42,6 +42,14 @@ public class PublicacaoController {
 		return "redirect:/paginaPrincipal";
 	}
 	
+	@PostMapping("/salvarEdicaoPublicacao")
+	public String salvarEdicaoPublicacao(@ModelAttribute Publicacao publicacao,HttpSession session,Model model) throws ParseException {
+		Usuario usuario =(Usuario)session.getAttribute("usuarioLogado");
+		publicacao.setDataPublicacao(this.getDataHora());
+		this.publicacaoDao.save(publicacao);
+		return "redirect:/paginaPrincipal";
+	}
+	
 	@GetMapping("/listarTodasPublicacoes")
 	public String listarTodasPublicacoes(Integer id, Model model) {
 		model.addAttribute("lista", this.publicacaoDao.findAll(Sort.by("dataPublicacao")));
@@ -49,9 +57,11 @@ public class PublicacaoController {
 	}
 	
 	@GetMapping("/editarPublicacao")
-	public String editarPublicacao(Integer id,Model model) {
+	public String editarPublicacao(Integer id,Model model,HttpSession session) {
+		Usuario usuario =(Usuario)session.getAttribute("usuarioLogado");
+		model.addAttribute("usuario", usuario);
 		model.addAttribute("publi",this.publicacaoDao.findById(id));
-		return "redirect:/paginaPrincipal";
+		return "editarPublicacao";
 	}
 	
 	@GetMapping("/removerPublicacao")

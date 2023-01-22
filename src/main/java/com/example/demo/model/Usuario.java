@@ -23,10 +23,6 @@ public class Usuario {
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private String dataNascimento;
 	private String senha;
-	@OneToMany(mappedBy = "user",
-			cascade = CascadeType.ALL,
-	        orphanRemoval = true)
-	private List<Publicacao> publicacao;
 	
 	
 	public String getNomeUsuario() {
@@ -65,11 +61,6 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public List<Publicacao> getPublicacao() {
-		return publicacao;
-	}
-	public void setPublicacao(List<Publicacao> publicacao) {
-		this.publicacao = publicacao;
-	}
+	
 	
 }
