@@ -4,23 +4,16 @@
 <meta charset="UTF-8">
 <title>Principal</title>
 <link rel="stylesheet" type="text/css" href="/css/principal.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<!-- Tema opcional -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<!-- Última versão JavaScript compilada e minificada -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
 	<header>
         <nav class="navbar">
-            <a href="#" class="logo">Valhalla</a>
-            
-            <form action="/pesquisarPorUsuario" method="post">
-				<div class="form-inline">
-					<input type="text" class="form-control" id="nomeUsuario"
-						placeholder="Pesquise pelo nome do usuario" name="nomeUsuario" size="50" autofocus >
-					<button type="submit" class="btn btn-primary">
-						<i class="fa fa-search" style="font-size: 20px">Pesquisar</i>
+            <a href="paginaPrincipal" class="logo">Valhalla</a>
+            <form action="/pesquisarPorUsuario" method="post" class="form-nav">
+				<div class="">
+					<input type="text" class="search-bar" id="nomeUsuario" placeholder="Pesquise algo..." name="nomeUsuario">
+					<button type="submit" class="btn-search">
+						<i class="">Pesquisar</i>
 					</button>
 				</div>
 			</form>
@@ -34,13 +27,16 @@
                 <li><a href="#">Chats</a></li>
                 <li><a href="#">Hastags</a></li>
                 <li><a href="#">Sobre</a></li> -->
-                <li><a href="/logout">Sair</a></li>
+                <li><a href="/logout" class="sair">Sair</a></li>
             </ul>
         </nav>
     </header>
     <main>
-    	<h2>Bem Vindo(a)</h2>
-		<h2 th:text="${usuario.nomeUsuario}"></h2>
+    	<div class="usuario">	
+	    	<h2 id="bv">Bem Vindo(a)</h2>
+	    	<h2>,</h2>
+			<h2 th:text="${usuario.nomeUsuario}" id="user"></h2>
+		</div>
 		<form th:action="@{/salvarPublicacao}" method="post" th:object="${publi}">
    			<div class="textfield">
 				<label th:for="texto"></label>
@@ -48,33 +44,29 @@
 	           	<button type="submit" class="btn-pub">PUBLICAR</button>
             </div>
         </form>
-        
             <h1>Publicações</h1>
-            <table class="table table-dark">
-			  <tr>
+        <table class="table-publi" border="1px">
+		  	<tr class="acoes">
 			  	<th>Usuario</th>
 			  	<th>Data de Postagem</th>
 				<th>Mensagem</th>
-				<th>Curtidas</th>
 				<th>Ações</th>
-			  </tr>
-			  <tr th:each="publi : ${lista}">
+		  	</tr>
+			  <tr th:each="publi : ${lista}" class="dados">
 			  	<td th:text="${publi.user.nomeUsuario}"></td>
 		  		<td th:text="${publi.dataPublicacao}"></td>
 				<td th:text="${publi.texto}"></td>
-				<td th:text="${publi.curtida}"></td>
-				<td>
-					<div th:if="${publi.user.id == usuario.id}">
+				<td class="td-deldt">
+					<div th:if="${publi.user.id == usuario.id}" class="del-edt">
 			     		<a th:href="@{/editarPublicacao(id=${publi.id})}">Editar</a>
 			     		<a th:href="@{/removerPublicacao(id=${publi.id})}">Remover</a>
 			     	</div>
-			     	<div th:if="${publi.user.id != usuario.id}">	
-			     	<p>Você não tem permissão para acessar as ações de outro usuário!</p>
+			     	<div th:if="${publi.user.id != usuario.id}" class="spam">	
+			     	<p>Sem permissão!</p>
 			     	</div>		 	
 			 	</td>
 		  	</tr>
-			</table>
-        
+		</table>
     </main>
     <script type="text/javascript" src="/js/mobile-navbar.js"></script>
 </body>

@@ -10,10 +10,23 @@ a{
 a:hover{
     opacity: 0.7;
 }
+h1{
+	color: #7F00FF;
+	font-size: 25px;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+}
+h2{
+	color: #fff;
+}
 .logo{
     font-size: 24px;
     text-transform: uppercase;
     letter-spacing: 4px;
+    color: #fff;
+}
+.sair{
+	color: #fff;
 }
 nav{
     display: flex;
@@ -46,7 +59,13 @@ main{
     margin: 8px;
     transition: 0.3s;
 }
+form-nav{
+	display: flex;
+	justify-content: center;
+	
+}
 .search-bar{
+	width: 10vw;
     border: none;
     padding: 5px;
     border-radius: 10px;
@@ -59,15 +78,36 @@ main{
     text-align: center;
 }
 .search-bar::placeholder{
-    color: white;
+    color: #ccc;
 }
 .search-bar:hover{
     background: #897bb1;
     transition: 100ms;
     color: #e2cdf7;
 }
+.btn-search{
+	width: 7vw;
+	padding: 0.5vh;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 4px;
+    background: #514869;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px #00000056;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-transform: uppercase;
+}
+.btn-search:hover{
+	background: #897bb1;
+    transition: 100ms;
+    color: #e2cdf7;
+}
 .line1{
-	color: white;
+	color: #fff;
 }
 @media (max-width: 999px){
     body{
@@ -125,6 +165,19 @@ main{
 .mobile-menu.active .line3{
     transform: rotate(45deg) translate(-5px, -7px);
 }
+.usuario{
+	display: flex;
+	margin-left: 10vw;
+}
+#user{
+	margin-left: 10px;
+	color: #fff;
+}
+#bv{
+	color: #7F00FF;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+}
 .textfield{
     display: flex;
     padding-top: 20px;
@@ -144,7 +197,7 @@ main{
     box-sizing: border-box;
 }
 .textfield > input::placeholder{
-    color: #fff;
+    color: #ccc;
 }
 .btn-pub{
     width: 7vw;
@@ -158,21 +211,25 @@ main{
     border-radius: 0px 10px 10px 0px;
     cursor: pointer;
     box-sizing: border-box;
+    text-transform: uppercase;
 }
-.pub-usuarios{
-    width: 40%;
-    height: 40vh;
-    color: #fff;
-    display: flex;
-    font-size: 10pt;
-    flex-direction: row;
-    justify-content: start;
-    margin-top: 10px;
-    margin-left: 30vw;
-    border: none;
-    border-radius: 10px;
-    background: #514869;
-    box-shadow: 0px 10px 40px #00000056;
-    outline: none;
-    box-sizing: border-box;
+main > h1{
+	margin-top: 3vw;
+	text-align: center;
+}
+.table-publi{
+	border: none;
+	color: #ccc;
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	margin-top: 3vw;
+}
+.publi{
+	display: flex;
+	text-align: center;
+	justify-content: space-between;
+}
+.acoes{
+	color: #fff;
 }
