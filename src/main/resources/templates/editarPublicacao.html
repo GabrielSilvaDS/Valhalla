@@ -30,7 +30,7 @@
 		<form th:action="@{/salvarPublicacao}" method="post" th:object="${publi}">
 			<input type="hidden" th:field="*{id}"/>
    			<div class="textfield">
-				<label th:for="texto">Texto</label>
+				<label th:for="texto"></label>
 	           	<input type="text" th:field="*{texto}" class="pub-text" placeholder="Faça uma publicação..." required="required">
 	           	<button type="submit" class="btn-pub">SALVAR</button>
             </div>

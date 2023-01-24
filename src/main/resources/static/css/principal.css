@@ -15,6 +15,8 @@ h1{
 	font-size: 25px;
 	text-transform: uppercase;
 	letter-spacing: 5px;
+	text-align: center;
+    margin-top: 30px;
 }
 h2{
 	color: #fff;

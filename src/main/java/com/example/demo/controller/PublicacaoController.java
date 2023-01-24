@@ -47,7 +47,7 @@ public class PublicacaoController {
 		return "redirect:/paginaPrincipal";
 	}
 	
-	@PostMapping("/pesquisarPorUsuario")
+	@PostMapping("/pesquisar")
 	public String pesquisarPublicacaoPorUsuario(String parametro, Model model,HttpSession session) {
 		Usuario usuario =(Usuario)session.getAttribute("usuarioLogado");
 		model.addAttribute("usuario", usuario);
@@ -55,8 +55,7 @@ public class PublicacaoController {
 			model.addAttribute("publi", new Publicacao());
 		}
 		if(parametro == null || parametro.isEmpty()) {
-			model.addAttribute("listaUsuario", publicacaoDao.findAll());
-			model.addAttribute("listaPublicacao", publicacaoDao.findAll());
+			model.addAttribute("lista", publicacaoDao.findAll());
 		}else {
 			//Buscar por Usuario
 			Usuario user = usuarioDao.findByNomeUsuarioEqualsIgnoreCase(parametro);
@@ -69,7 +68,7 @@ public class PublicacaoController {
 			//Fim Buscar por Publicação
 		}
 		
-		return "resultadoPesquisa";
+		return "principal";
 	}
 	
 	@GetMapping("/listarTodasPublicacoes")

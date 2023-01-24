@@ -44,52 +44,7 @@
 	           	<button type="submit" class="btn-pub">PUBLICAR</button>
             </div>
         </form>
-        <h1>Lista por Usuario</h1>
-        <table class="table-publi" border="1px">
-		  	<tr class="acoes">
-			  	<th>Usuario</th>
-			  	<th>Data de Postagem</th>
-				<th>Mensagem</th>
-				<th>Ações</th>
-		  	</tr>
-			  <tr th:each="publi : ${listaUsuario}" class="dados">
-			  	<td th:text="${publi.user.nomeUsuario}"></td>
-		  		<td th:text="${publi.dataPublicacao}"></td>
-				<td th:text="${publi.texto}"></td>
-				<td class="td-deldt">
-					<div th:if="${publi.user.id == usuario.id}" class="del-edt">
-			     		<a th:href="@{/editarPublicacao(id=${publi.id})}">Editar</a>
-			     		<a th:href="@{/removerPublicacao(id=${publi.id})}">Remover</a>
-			     	</div>
-			     	<div th:if="${publi.user.id != usuario.id}" class="spam">	
-			     	<p>Sem permissão!</p>
-			     	</div>		 	
-			 	</td>
-		  	</tr>
-		</table>		
-		<h1>Lista por Publicação</h1>
-		<table class="table-publi" border="1px">
-		  	<tr class="acoes">
-			  	<th>Usuario</th>
-			  	<th>Data de Postagem</th>
-				<th>Mensagem</th>
-				<th>Ações</th>
-		  	</tr>
-			  <tr th:each="publi : ${listaPublicacao}" class="dados">
-			  	<td th:text="${publi.user.nomeUsuario}"></td>
-		  		<td th:text="${publi.dataPublicacao}"></td>
-				<td th:text="${publi.texto}"></td>
-				<td class="td-deldt">
-					<div th:if="${publi.user.id == usuario.id}" class="del-edt">
-			     		<a th:href="@{/editarPublicacao(id=${publi.id})}">Editar</a>
-			     		<a th:href="@{/removerPublicacao(id=${publi.id})}">Remover</a>
-			     	</div>
-			     	<div th:if="${publi.user.id != usuario.id}" class="spam">	
-			     	<p>Sem permissão!</p>
-			     	</div>		 	
-			 	</td>
-		  	</tr>
-		</table>       
+		     
     </main>
     <script type="text/javascript" src="/js/mobile-navbar.js"></script>
 </body>
